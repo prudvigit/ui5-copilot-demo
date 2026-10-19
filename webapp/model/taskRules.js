@@ -17,6 +17,9 @@
       }
       return "";
     },
+    clearCompleted: function (tasks) {
+      return tasks.filter(function (task) { return task.done !== true; });
+    },
     countCompleted: function (tasks) {
       return tasks.filter(function (task) { return task.done === true; }).length;
     }

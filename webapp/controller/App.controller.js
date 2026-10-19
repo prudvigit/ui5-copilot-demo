@@ -34,6 +34,12 @@ sap.ui.define([
       context.getModel().setProperty(context.getPath() + "/done", event.getParameter("selected"));
       this.updateCounts();
     },
+    onClearCompleted: function () {
+      var model = this.getView().getModel();
+      model.setProperty("/tasks", taskRules.clearCompleted(model.getProperty("/tasks")));
+      this.updateCounts();
+      MessageToast.show("Completed tasks cleared");
+    },
     updateCounts: function () {
       var model = this.getView().getModel();
       var tasks = model.getProperty("/tasks");
