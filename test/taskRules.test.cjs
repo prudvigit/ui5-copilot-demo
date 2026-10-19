@@ -13,3 +13,18 @@ test('counts only completed tasks, including empty lists', () => {
   assert.equal(rules.countCompleted([]), 0);
   assert.equal(rules.countCompleted([{done:true},{done:false},{done:true}]), 2);
 });
+
+test('clears only completed tasks without mutating the original list', () => {
+  const pending = {title:'Keep me', done:false};
+  const tasks = [pending, {title:'Remove me', done:true}];
+  const remaining = rules.clearCompleted(tasks);
+  assert.deepEqual(remaining, [pending]);
+  assert.equal(remaining[0], pending);
+  assert.equal(tasks.length, 2);
+  assert.equal(rules.countCompleted(remaining), 0);
+});
+test('clearing handles empty, unfinished, and fully completed lists', () => {
+  assert.deepEqual(rules.clearCompleted([]), []);
+  assert.deepEqual(rules.clearCompleted([{done:true}]), []);
+  assert.deepEqual(rules.clearCompleted([{done:false}]), [{done:false}]);
+});

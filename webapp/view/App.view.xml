@@ -13,6 +13,7 @@
             <CheckBox selected="{done}" select=".onToggle" text="{title}" />
           </HBox></CustomListItem>
         </List>
+        <Button text="Clear completed" press=".onClearCompleted" enabled="{= ${/completed} > 0 }" class="sapUiSmallMarginTop" />
         <ObjectStatus text="{= ${/completed} + ' of ' + ${/total} + ' tasks complete' }" class="sapUiSmallMarginTop" />
       </VBox>
     </content>
