@@ -1,0 +1,20 @@
+<mvc:View controllerName="demo.tasks.controller.App" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" displayBlock="true">
+  <App><Page title="Team Tasks" class="sapUiResponsiveContentPadding">
+    <content>
+      <VBox class="sapUiSmallMargin" width="auto">
+        <Title text="A small change. A reviewed PR." level="H1" />
+        <Text text="Build with Codex, review with Copilot. Tasks live only in this browser session." class="sapUiSmallMarginBottom" />
+        <Label text="New task" labelFor="taskTitle" />
+        <Input id="taskTitle" value="{/newTitle}" placeholder="What needs to be done?" maxLength="120" submit=".onAdd" />
+        <Button text="Add task" type="Emphasized" press=".onAdd" class="sapUiSmallMarginTop sapUiSmallMarginBottom" />
+        <MessageStrip text="Select a task when it is complete. Refreshing restores the sample data." type="Information" showIcon="true" class="sapUiSmallMarginBottom" />
+        <List id="taskList" headerText="Tasks" items="{/tasks}" noDataText="No tasks yet. Add one above.">
+          <CustomListItem><HBox alignItems="Center" class="sapUiSmallMargin">
+            <CheckBox selected="{done}" select=".onToggle" text="{title}" />
+          </HBox></CustomListItem>
+        </List>
+        <ObjectStatus text="{= ${/completed} + ' of ' + ${/total} + ' tasks complete' }" class="sapUiSmallMarginTop" />
+      </VBox>
+    </content>
+  </Page></App>
+</mvc:View>
